@@ -26,6 +26,7 @@ public class MeteorController : BasicController
     {
         if (base.IsRun())
         {
+            Debug.Log("METOR CONTROLLER EXECUTE");
             if (nextSpawn <= 0.0f)
             {
                 meteors.Add(spawn());

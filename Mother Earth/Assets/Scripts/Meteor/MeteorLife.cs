@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class MeteorLife : MonoBehaviour
 {
-    private CMeteor MeteorController;
+    private MeteorController meteorController;
 
     private void Start()
     {
-        MeteorController = GameObject.FindGameObjectWithTag("Controller").GetComponent<CMeteor>();
+        meteorController = GameObject.FindGameObjectWithTag("MeteorController").GetComponent<MeteorController>();
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Hex"))
         {
-            MeteorController.Collision(gameObject, other.gameObject);
+            meteorController.Collision(gameObject, other.gameObject);
         }
     }
 }
