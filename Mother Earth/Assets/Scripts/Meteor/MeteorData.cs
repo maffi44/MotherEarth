@@ -9,6 +9,7 @@ public class MeteorData : MonoBehaviour
     private Vector3 directionMove;
     private Vector3 rotateMove;
     private GameObject meteor;
+    private GameObject affectedArea;
 
     private void Start()
     {
@@ -19,6 +20,27 @@ public class MeteorData : MonoBehaviour
         prefab = gameObject;
         directionMove = Vector3.Normalize(Vector3.zero - transform.position);
         rotateMove = Random.insideUnitSphere;
+    }
+
+    public void GetAffectedArea(GameObject affected)
+    {
+        affectedArea = affected;
+    }
+
+    public GameObject CreateAffectedArea(GameObject affected)
+    {
+        return Instantiate(
+                affected,
+                Vector3.Normalize(transform.position) * 5,
+                transform.rotation);
+    }
+
+    public GameObject create()
+    { }
+
+    public GameObject SetAffectedArea()
+    {
+        return affectedArea;
     }
 
     public GameObject SetPrefab()

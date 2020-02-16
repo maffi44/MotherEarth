@@ -6,6 +6,7 @@ public class CMeteor : BasicController
 {
     public GameObject Meteor;
     public GameObject Explosion;
+    public GameObject AffectedArea;
     public float MinDelaySpawn = 1.0f;
     public float MaxDelaySpawn = 2.0f;
     public float SpeedMove = 1.0f;
@@ -13,11 +14,14 @@ public class CMeteor : BasicController
     private GameObject mainCamera;
     private float nextSpawn;
     private GameObject[] hexes;
-    public List<MeteorData> meteors;
+    private List<MeteorData> meteors;
+    private List<GameObject> affectedsArea;
+
     private void Start()
     {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
         meteors = new List<MeteorData>();
+        affectedsArea = new List<GameObject>();
         hexes = GameObject.FindGameObjectsWithTag("Hex");
         nextSpawn = Random.Range(MinDelaySpawn, MaxDelaySpawn);
     }
@@ -51,6 +55,7 @@ public class CMeteor : BasicController
         data = prefab.GetComponent<MeteorData>();
         data.GetDirectionMove(data.SetDirectionMove() * SpeedMove);
         data.GetRotateMove(data.SetRotateMove() * Random.Range(1.0f, SpeedRotate));
+        affectedsArea.Add(data.CreateAffectedArea(AffectedArea));
         return data;
     }
 
@@ -64,12 +69,17 @@ public class CMeteor : BasicController
                 data.SetRotateMove().y * Time.deltaTime * SpeedRotate,
                 data.SetRotateMove().z * Time.deltaTime * SpeedRotate);
         }
+        foreach (GameObject effect in affectedsArea)
+        {
+            effect.GetComponent<AffectedAreaState>().Change();
+        }
     }
 
     public void Collision(GameObject meteor, GameObject Hex)
     {
         //Hex.GetComponent<name>().name;
         Instantiate(Explosion, meteor.transform.position, Quaternion.identity);
+        Destroy(meteor.GetComponent<MeteorData>().SetAffectedArea());
         meteors.Remove(meteor.GetComponent<MeteorData>());
         Destroy(meteor);
     }
