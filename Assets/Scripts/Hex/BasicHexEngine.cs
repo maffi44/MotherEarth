@@ -20,7 +20,9 @@ public enum ProgressState {
 // Dead or Alive hex state
 public enum HexState {
     Dead,
-    Alive
+    Alive,
+    Cloud,
+    Water
 };
 
 public class BasicHexEngine : MonoBehaviour, IHexEngine {
@@ -43,14 +45,14 @@ public class BasicHexEngine : MonoBehaviour, IHexEngine {
 
         [SerializeField] private HexState state;
 
-        public BasicHexModel()
+        public BasicHexModel(HexState awakeState)
         {
             temperatureBalance = 0;
             waterBalance = 0;
             deltaTemperature = 0;
             deltaWater = 0;
             progressPoints = 0;
-            state = HexState.Dead;
+            state = awakeState;
             health = 100;
             hexProgressState = ProgressState.Nothing;
         }
@@ -113,6 +115,7 @@ public class BasicHexEngine : MonoBehaviour, IHexEngine {
             hexProgressState = ProgressState.Nothing;
         }
     }
+
     [SerializeField] public  BasicHexModel hexModel;
     [SerializeField] int     neiboursCount = 1;
     [SerializeField] float   tickProgressDelta;
@@ -121,7 +124,13 @@ public class BasicHexEngine : MonoBehaviour, IHexEngine {
 
     // Start is called before the first frame update
     void Start() {
-        hexModel = new BasicHexModel();
+        //if (this.gameObject.tag == "Cloud")
+        //{
+        //    hexModel = new BasicHexModel(HexState.Cloud);
+        //    this.gameObject.GetComponent()
+        //}
+        //else
+            hexModel = new BasicHexModel(HexState.Dead);
         getNeibours();
         neiboursCount = hexNeibours.Count;
     }
@@ -175,7 +184,6 @@ public class BasicHexEngine : MonoBehaviour, IHexEngine {
         }
         return;
     }
-
     // Make dead a hex block
     public void Die() {
         hexModel.SetState(HexState.Dead);
@@ -206,4 +214,11 @@ public class BasicHexEngine : MonoBehaviour, IHexEngine {
     public void ProgresEffectAddition(float progresEffect) {
         neigborsEffects += progresEffect;
     }
+  
+    // Set Type to Cloud
+    public void SetTypeCloud()
+    {
+       hexModel.SetState(HexState.Cloud);
+    }
+
 }

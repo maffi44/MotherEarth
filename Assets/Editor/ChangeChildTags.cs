@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.Collections;
-public class ChangeChildTag : MonoBehaviour
+public class ChangeChildTag : Editor
 {
 
     [MenuItem("GameObject/Change Children to Parent Tag")]
@@ -22,7 +22,7 @@ public class ChangeChildTag : MonoBehaviour
                     EditorUtility.DisplayProgressBar("Changing tags", "Changing all child object tags to " + parentTag +
                         "\n  (" + (int)counter + "/" + (int)numberOfTransforms + ")",
                         counter / numberOfTransforms);
-                    childTransform.gameObject.tag = parentTag;
+                        childTransform.gameObject.tag = parentTag;
                 }
                 EditorUtility.ClearProgressBar();
             }
