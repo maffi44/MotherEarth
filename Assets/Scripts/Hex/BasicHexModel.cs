@@ -14,7 +14,7 @@ public enum ProgressState
     Village = 4096,
     City = 8192,
     MediumCity = 16384,
-    MegaCitн = 32768,
+    MegaCity = 32768,
     Winner = 65536
 };
 

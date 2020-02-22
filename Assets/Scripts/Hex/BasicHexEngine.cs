@@ -3,6 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+public enum RenderState
+{
+    Nothing,
+    Bush,
+    Trees,
+    Animals,
+    Tribe,
+    Village,
+    City,
+    MediumCity,
+    MegaCity,
+    Winner
+}
 
 public abstract class BasicHexEngine : MonoBehaviour
 {
@@ -11,6 +24,7 @@ public abstract class BasicHexEngine : MonoBehaviour
     [SerializeField] protected float neigborsEffects;
     [SerializeField] public BasicHexModel hexModel;
     [SerializeField] protected List<BasicHexEngine> hexNeibours = new List<BasicHexEngine>();
+    [SerializeField] protected RenderState renderState;
 
     // Start is called before the first frame update
     void Start()
@@ -49,7 +63,15 @@ public abstract class BasicHexEngine : MonoBehaviour
         neigborsEffects += progresEffect;
     }
 
+    public virtual void RenderUpdate()
+    {
 
+    }
+
+    public virtual void GetRenderState()
+    {
+
+    }
 
     public virtual void Tick()
     {
