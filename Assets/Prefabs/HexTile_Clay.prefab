@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4578241568717674}
   - component: {fileID: 4334604792498513319}
-  - component: {fileID: 5136101414116488404}
+  - component: {fileID: 3592823741658463033}
   m_Layer: 0
   m_Name: HexTile_Clay
   m_TagString: Hex
@@ -54,7 +54,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.08618188, z: 1}
   m_Center: {x: 0, y: 0.10567343, z: 0}
---- !u!114 &5136101414116488404
+--- !u!114 &3592823741658463033
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -63,21 +63,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1411991481385686}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1eb631344deb34ae99802368dae7e43b, type: 3}
+  m_Script: {fileID: 11500000, guid: beef7d29e98ed4ba0961c00f9a851ed1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  neiboursCount: 1
+  tickProgressDelta: 0
+  neigborsEffects: 0
   hexModel:
     temperatureBalance: 0
     waterBalance: 0
     progressPoints: 0
-    health: 100
+    health: 0
     deltaTemperature: 0
     deltaWater: 0
     hexProgressState: 0
     state: 0
-  neiboursCount: 1
-  tickProgressDelta: 0
-  neigborsEffects: 0
   hexNeibours: []
 --- !u!1 &1839316531334494
 GameObject:

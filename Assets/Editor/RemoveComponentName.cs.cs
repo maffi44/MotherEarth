@@ -7,11 +7,11 @@ public class RemoveComponentName : MonoBehaviour
 
     public void RemoveComponents()
     {
-        Component[] components = GetComponentsInChildren(typeof(ComponentName), true);
+        //Component[] components = GetComponentsInChildren(typeof(ComponentName), true);
 
-        foreach (var c in components)
-        {
-            DestroyImmediate(c);
-        }
+        //foreach (var c in components)
+        //{
+        //    DestroyImmediate(c);
+        //}
     }
 }
