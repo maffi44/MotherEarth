@@ -25,117 +25,117 @@ public enum HexState {
     Water
 };
 
-public class BasicHexEngine : MonoBehaviour, IHexEngine {
-    [SerializeField] const float waterKoef = 0.5f;
-    [SerializeField] const float temperatureKoef = 0.5f;
 
-    //Inner data class
-    [System.Serializable]
-    public class BasicHexModel
+[System.Serializable]
+public class BasicHexModel
+{
+    [SerializeField] public float temperatureBalance;
+    [SerializeField] public float waterBalance;
+    [SerializeField] public float progressPoints;
+    [SerializeField] public float health;
+
+    public float deltaTemperature;
+    public float deltaWater;
+
+    [SerializeField] private ProgressState hexProgressState;
+
+    [SerializeField] private HexState state;
+
+    public BasicHexModel(HexState awakeState)
     {
-        [SerializeField] public float temperatureBalance;
-        [SerializeField] public float waterBalance;
-        [SerializeField] public float progressPoints;
-        [SerializeField] public float health;
+        temperatureBalance = 0;
+        waterBalance = 0;
+        deltaTemperature = 0;
+        deltaWater = 0;
+        progressPoints = 0;
+        state = awakeState;
+        health = 100;
+        hexProgressState = ProgressState.Nothing;
+    }
 
-        public float deltaTemperature;
-        public float deltaWater;
+    // Getter to know hex state (Dead or Alive)
+    public HexState GetState()
+    {
+        return state;
+    }
 
-        [SerializeField] private ProgressState hexProgressState;
+    // Setter to change state (Dead or Alive)
+    public void SetState(HexState newState)
+    {
+        state = newState;
+    }
+    // Add to progressPoints value
+    public void MakeProgress(float progresRate)
+    {
+        ProgressState newHexProgressState;
 
-        [SerializeField] private HexState state;
-
-        public BasicHexModel(HexState awakeState)
+        newHexProgressState = (ProgressState)((int)progressPoints);
+        if (newHexProgressState < hexProgressState)
         {
-            temperatureBalance = 0;
-            waterBalance = 0;
-            deltaTemperature = 0;
-            deltaWater = 0;
-            progressPoints = 0;
-            state = awakeState;
-            health = 100;
-            hexProgressState = ProgressState.Nothing;
+            health += progresRate;
         }
-
-        // Getter to know hex state (Dead or Alive)
-        public HexState GetState()
+        else
         {
-            return state;
-        }
-
-        // Setter to change state (Dead or Alive)
-        public void SetState(HexState newState)
-        {
-            state = newState;
-        }
-        // Add to progressPoints value
-        public void MakeProgress(float progresRate)
-        {
-            ProgressState newHexProgressState;
-
-            newHexProgressState = (ProgressState)((int)progressPoints);
-            if (newHexProgressState < hexProgressState)
-            {
-                health += progresRate;
-            }
-            else
-            {
-                progressPoints += progresRate;
-                hexProgressState = newHexProgressState;
-            }
-        }
-
-        public float GetWaterBalance()
-        {
-            waterBalance = waterBalance + deltaWater;
-            return System.Math.Abs(waterBalance);
-        }
-
-        public float GetTemperatureBalance()
-        {
-            temperatureBalance = temperatureBalance + deltaTemperature;
-            return System.Math.Abs(temperatureBalance);
-        }
-
-        public void ResetEffects()
-        {
-            deltaTemperature = 0;
-            deltaWater = 0;
-        }
-
-        public void ResetAll()
-        {
-            temperatureBalance = 0;
-            waterBalance = 0;
-            deltaTemperature = 0;
-            deltaWater = 0;
-            progressPoints = 0;
-            health = 0;
-            state = HexState.Dead;
-            hexProgressState = ProgressState.Nothing;
+            progressPoints += progresRate;
+            hexProgressState = newHexProgressState;
         }
     }
 
-    [SerializeField] public  BasicHexModel hexModel;
-    [SerializeField] int     neiboursCount = 1;
-    [SerializeField] float   tickProgressDelta;
-    [SerializeField] float   neigborsEffects;
-    [SerializeField] List<BasicHexEngine> hexNeibours = new List<BasicHexEngine>();
+    public float GetWaterBalance()
+    {
+        waterBalance = waterBalance + deltaWater;
+        return System.Math.Abs(waterBalance);
+    }
+
+    public float GetTemperatureBalance()
+    {
+        temperatureBalance = temperatureBalance + deltaTemperature;
+        return System.Math.Abs(temperatureBalance);
+    }
+
+    public void ResetEffects()
+    {
+        deltaTemperature = 0;
+        deltaWater = 0;
+    }
+
+    public void ResetAll()
+    {
+        temperatureBalance = 0;
+        waterBalance = 0;
+        deltaTemperature = 0;
+        deltaWater = 0;
+        progressPoints = 0;
+        health = 0;
+        state = HexState.Dead;
+        hexProgressState = ProgressState.Nothing;
+    }
+};
+
+public abstract class BasicHexEngine : MonoBehaviour
+{
+    [SerializeField] protected int neiboursCount = 1;
+    [SerializeField] protected float tickProgressDelta;
+    [SerializeField] protected float neigborsEffects;
+    [SerializeField] public BasicHexModel hexModel;
+    [SerializeField] protected List<BasicHexEngine> hexNeibours = new List<BasicHexEngine>();
 
     // Start is called before the first frame update
-    void Start() {
+    void Start()
+    {
         //if (this.gameObject.tag == "Cloud")
         //{
         //    hexModel = new BasicHexModel(HexState.Cloud);
         //    this.gameObject.GetComponent()
         //}
         //else
-            hexModel = new BasicHexModel(HexState.Dead);
+        hexModel = new BasicHexModel(HexState.Dead);
         getNeibours();
         neiboursCount = hexNeibours.Count;
     }
 
-    private void getNeibours() {
+    private void getNeibours()
+    {
         Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, 0.5f);
         foreach (var gobject in hitColliders)
         {
@@ -151,6 +151,17 @@ public class BasicHexEngine : MonoBehaviour, IHexEngine {
             }
         }
     }
+
+    public void ProgresEffectAddition(float progresEffect)
+    {
+        neigborsEffects += progresEffect;
+    }
+};
+
+public class StandartHexEngine : BasicHexEngine, IHexEngine {
+    [SerializeField] const float waterKoef = 0.5f;
+    [SerializeField] const float temperatureKoef = 0.5f;
+
 
     // Process Hex on Frame
     public void Tick() {
@@ -209,10 +220,6 @@ public class BasicHexEngine : MonoBehaviour, IHexEngine {
     // Set Water Effect
     public void SetWaterEffect(float waterEffect) {
         hexModel.deltaWater = waterEffect;
-    }
-
-    public void ProgresEffectAddition(float progresEffect) {
-        neigborsEffects += progresEffect;
     }
   
     // Set Type to Cloud
