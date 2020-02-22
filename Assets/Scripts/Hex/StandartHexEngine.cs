@@ -69,4 +69,8 @@ public class StandartHexEngine : BasicHexEngine, IHexEngine
         hexModel.SetState(HexState.Cloud);
     }
 
+    public override RenderState GetRenderState()
+    {
+
+    }
 }
