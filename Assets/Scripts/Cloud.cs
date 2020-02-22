@@ -5,7 +5,7 @@ using UnityEngine;
 public class Cloud : MonoBehaviour
 {
     [SerializeField] int layerMask;
-    public void castRay()
+    public GameObject castRay()
     {
         int layer = 1 << layerMask;
         RaycastHit hit;
@@ -13,7 +13,9 @@ public class Cloud : MonoBehaviour
         if (Physics.Raycast(this.transform.position, -this.transform.up, out hit, Mathf.Infinity, layer))
         {
             Debug.Log("HIT");
-            //Debug.Log(hit.rigidbody.gameObject.name); 
+            return (hit.collider.gameObject);
         }
+        return null;
     }
+
 }
