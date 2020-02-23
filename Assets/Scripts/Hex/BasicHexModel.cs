@@ -112,4 +112,9 @@ public class BasicHexModel
         state = HexState.Dead;
         hexProgressState = ProgressState.Nothing;
     }
+
+    public ProgressState GetProgressState()
+    {
+        return this.hexProgressState;
+    }
 };
