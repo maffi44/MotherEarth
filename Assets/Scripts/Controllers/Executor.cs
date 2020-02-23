@@ -9,6 +9,7 @@ public class Executor : MonoBehaviour
     private HexController hexController;
     private PlanetController planetController;
     private CloudController cloudController;
+    private HexViewController hexViewController;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,8 @@ public class Executor : MonoBehaviour
         planetController.ControllerStart();
         cloudController = GameObject.FindGameObjectWithTag("CloudController").GetComponent<CloudController>();
         cloudController.ControllerStart();
+        hexViewController = GameObject.FindGameObjectWithTag("HexViewController").GetComponent<HexViewController>();
+        hexViewController.ControllerStart();
     }
 
 // Update is called once per frame
@@ -30,5 +33,6 @@ void Update()
         meteorController.Execute();
         planetController.Execute();
         cloudController.Execute();
+        hexViewController.Execute();
     }
 }
