@@ -21,6 +21,7 @@ public class Executor : MonoBehaviour
         planetController = GameObject.FindGameObjectWithTag("Planet").GetComponent<PlanetController>();
         planetController.ControllerStart();
         cloudController = GameObject.FindGameObjectWithTag("CloudController").GetComponent<CloudController>();
+        Debug.Log(cloudController.gameObject.name);
         cloudController.ControllerStart();
         hexViewController = GameObject.FindGameObjectWithTag("HexViewController").GetComponent<HexViewController>();
         hexViewController.ControllerStart();

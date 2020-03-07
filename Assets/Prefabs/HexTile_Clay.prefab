@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4578241568717674}
   - component: {fileID: 4334604792498513319}
   - component: {fileID: 3592823741658463033}
+  - component: {fileID: 1956005961174134149}
   m_Layer: 0
   m_Name: HexTile_Clay
   m_TagString: Hex
@@ -79,6 +80,34 @@ MonoBehaviour:
     hexProgressState: 0
     state: 0
   hexNeibours: []
+  renderState: 0
+  stones: {fileID: 0}
+  desert: {fileID: 0}
+  clay: {fileID: 0}
+  grass: {fileID: 0}
+  sbirth: {fileID: 0}
+  animal: {fileID: 0}
+  sanimal: {fileID: 0}
+  tribe: {fileID: 0}
+  village: {fileID: 0}
+  smallcity: {fileID: 0}
+  middlecity: {fileID: 0}
+  megapolice: {fileID: 0}
+  tileActive: {fileID: 0}
+  activeContent: {fileID: 0}
+--- !u!114 &1956005961174134149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411991481385686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b3980baa117d4695b31523be2186731, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerMask: 10
 --- !u!1 &1839316531334494
 GameObject:
   m_ObjectHideFlags: 0
