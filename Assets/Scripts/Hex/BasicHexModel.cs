@@ -35,7 +35,6 @@ public class BasicHexModel
     [SerializeField] public float waterBalance;
     [SerializeField] public float progressPoints;
     [SerializeField] public float health;
-
     public float deltaTemperature;
     public float deltaWater;
 
@@ -116,5 +115,10 @@ public class BasicHexModel
     public ProgressState GetProgressState()
     {
         return this.hexProgressState;
+    }
+
+    public void SetProgressState(ProgressState newState)
+    {
+        this.hexProgressState = newState;
     }
 };

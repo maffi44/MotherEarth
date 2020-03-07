@@ -10,6 +10,7 @@ public abstract class BasicHexEngine : MonoBehaviour
     [SerializeField] public BasicHexModel hexModel;
     [SerializeField] protected List<BasicHexEngine> hexNeibours = new List<BasicHexEngine>();
     [SerializeField] protected RenderState renderState;
+    [SerializeField] public Cloud attachedCloud;
     public GameObject stones;
     public GameObject desert;
     public GameObject clay;
@@ -35,22 +36,23 @@ public abstract class BasicHexEngine : MonoBehaviour
         //    this.gameObject.GetComponent()
         //}
         //else
+        TDeepChildFinder<Transform, string> finder = new TDeepChildFinder<Transform, string>();
         hexModel = new BasicHexModel(HexState.Dead);
         getNeibours();
         neiboursCount = hexNeibours.Count;
-        grass = transform.FindDeepChild("HexTop_River").gameObject;
-        desert = transform.FindDeepChild("HexTop_Desert").gameObject;
-        clay = transform.FindDeepChild("HexTop_ClayGround").gameObject;
-        stones = transform.FindDeepChild("HexTop_StoneGround").gameObject;
+        grass = finder.FindDeepChild(transform, "name", "HexTop_River").gameObject;
+        desert = finder.FindDeepChild(transform, "name", "HexTop_Desert").gameObject;
+        clay = finder.FindDeepChild(transform, "name", "HexTop_ClayGround").gameObject;
+        stones = finder.FindDeepChild(transform, "name", "HexTop_StoneGround").gameObject;
 
-        sbirth = transform.FindDeepChild("hex_tile_plant1").gameObject;
-        animal = transform.FindDeepChild("hex_tile_trees1").gameObject;
-        sanimal = transform.FindDeepChild("hex_tile_animals2").gameObject;
-        tribe = transform.FindDeepChild("hex_tile_tribe1").gameObject;
-        village = transform.FindDeepChild("hex_tile_vilage2").gameObject;
-        smallcity = transform.FindDeepChild("hex_tile_Small_town1").gameObject;
-        middlecity = transform.FindDeepChild("hex_tile_Middle_town1").gameObject;
-        megapolice = transform.FindDeepChild("hex_tile_Megapolis").gameObject;
+        sbirth = finder.FindDeepChild(transform, "name", "hex_tile_plant1").gameObject;
+        animal = finder.FindDeepChild(transform, "name", "hex_tile_trees1").gameObject;
+        sanimal = finder.FindDeepChild(transform, "name", "hex_tile_animals2").gameObject;
+        tribe = finder.FindDeepChild(transform, "name", "hex_tile_tribe1").gameObject;
+        village = finder.FindDeepChild(transform, "name", "hex_tile_vilage2").gameObject;
+        smallcity = finder.FindDeepChild(transform, "name", "hex_tile_Small_town1").gameObject;
+        middlecity = finder.FindDeepChild(transform, "name", "hex_tile_Middle_town1").gameObject;
+        megapolice = finder.FindDeepChild(transform, "name", "hex_tile_Megapolis").gameObject;
         grass.SetActive(false);
         desert.SetActive(false);
         clay.SetActive(false);
