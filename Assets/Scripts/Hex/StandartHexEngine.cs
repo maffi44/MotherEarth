@@ -83,6 +83,8 @@ public class StandartHexEngine : BasicHexEngine, IHexEngine
                 return RenderState.Animals;
             case ProgressState.Tribe:
                 return RenderState.Tribe;
+            case ProgressState.Village:
+                return RenderState.Village;
             case ProgressState.City:
                 return RenderState.City;
             case ProgressState.MediumCity:
