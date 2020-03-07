@@ -51,8 +51,6 @@ public abstract class BasicHexEngine : MonoBehaviour
         smallcity = transform.FindDeepChild("hex_tile_Small_town1").gameObject;
         middlecity = transform.FindDeepChild("hex_tile_Middle_town1").gameObject;
         megapolice = transform.FindDeepChild("hex_tile_Megapolis").gameObject;
-        activeContent = null;
-        tileActive = null;
         grass.SetActive(false);
         desert.SetActive(false);
         clay.SetActive(false);
