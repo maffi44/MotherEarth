@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class StandartHexEngine : BasicHexEngine, IHexEngine
@@ -150,7 +151,7 @@ public class StandartHexEngine : BasicHexEngine, IHexEngine
             tileActive.SetActive(false);
         if (hexModel.GetState() == HexState.Dead)
         {
-            tileActive = stones;
+            tileActive = deadLand;
         }
         else
         {
