@@ -94,6 +94,7 @@ MonoBehaviour:
   smallcity: {fileID: 0}
   middlecity: {fileID: 0}
   megapolice: {fileID: 0}
+  cloud: {fileID: 0}
   tileActive: {fileID: 0}
   activeContent: {fileID: 0}
 --- !u!114 &1956005961174134149
@@ -109,7 +110,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   layerMask: 10
+  humaditySpeed: 0.1
   attachedHex: {fileID: 0}
+  humidity: 0
+  moveSpeed: 0.5
 --- !u!1 &1839316531334494
 GameObject:
   m_ObjectHideFlags: 0

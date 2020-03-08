@@ -5,10 +5,12 @@ using UnityEngine;
 public class Cloud : MonoBehaviour
 {
     [SerializeField] int layerMask;
+    [SerializeField] float humaditySpeed = 0.1f;
     public BasicHexEngine attachedHex;
     public float humidity  = 0;
     private List <Cloud> neibours;
     private MeshRenderer cloudRenderer;
+    [SerializeField] float moveSpeed = 0.5f;
 
     private void Start()
     {
@@ -26,7 +28,6 @@ public class Cloud : MonoBehaviour
             cloudRenderer = cloudMesh.GetComponent<MeshRenderer>();
             if (cloudRenderer)
             {
-                Debug.Log("meshRenderer Exists");
                 Color color = cloudRenderer.material.color;
                 cloudRenderer.material.color = new Color(color.r, color.g, color.b, 0);
             }
@@ -42,10 +43,9 @@ public class Cloud : MonoBehaviour
     {
         int layer = 1 << layerMask;
         RaycastHit hit;
-        Debug.DrawRay(this.transform.position, -this.transform.up, Color.red);
-        if (Physics.Raycast(this.transform.position, -this.transform.up, out hit, Mathf.Infinity, layer))
+        //Debug.DrawRay(this.transform.position, -this.transform.up, Color.red);
+        if (Physics.Raycast(this.transform.position, -this.transform.up, out hit, 10, layer))
         {
-            Debug.Log("HIT");
             return (hit.collider.gameObject);
         }
         return null;
@@ -53,24 +53,32 @@ public class Cloud : MonoBehaviour
 
     public void changeView()
     {
-        Color color = cloudRenderer.material.color;
-        cloudRenderer.material.color = new Color(color.r, color.g, color.b, humidity / 200);
+        cloudRenderer.material.color = new Color(1, 1, 1, humidity / 200);
     }
 
-
-    //public void rain()
-    //{
-    //    StartCoroutine()
-    //}
+    public void rain()
+    {
+        GameObject obj = this.castRay();
+        if (obj)
+        {
+            StandartHexEngine objEngine = obj.GetComponent<StandartHexEngine>();
+            if (objEngine)
+            {
+                objEngine.SetWaterEffect(this.humidity * Time.deltaTime * humaditySpeed); // change value
+                this.humidity -= this.humidity * Time.deltaTime * humaditySpeed * 0.1f;
+                if (this.humidity < 0)
+                    this.humidity = 0;
+            }
+        }
+    }
     public  void move()
     {
         if (neibours.Count > 0)
         {
-
+            Random.InitState((int)Time.time);
             int r = Random.Range(0, neibours.Count - 1);
-            Debug.Log(r);
-            neibours[r].setHumidity(neibours[r].getHumidity() + this.getHumidity());
-            this.setHumidity(0);
+            neibours[r].setHumidity(neibours[r].getHumidity() + this.getHumidity() * Time.deltaTime * moveSpeed);
+            this.setHumidity(this.getHumidity() - this.getHumidity() * Time.deltaTime * moveSpeed);
         }
     }
 
@@ -79,7 +87,6 @@ public class Cloud : MonoBehaviour
         Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, 0.5f);
         foreach (var gobject in hitColliders)
         {
-            Debug.Log("Neibours");
             Cloud temp;
             if (temp = gobject.GetComponent<Cloud>())
             {

@@ -15,23 +15,23 @@ public class CloudController : EnvController
         hexes = GameObject.FindGameObjectsWithTag("Hex");
         planet = GameObject.FindGameObjectWithTag("Planet").GetComponent<PlanetController>();
         clouds = GameObject.FindGameObjectsWithTag("Cloud");
-        foreach (GameObject cloud in clouds)
-        {
-            //Debug.Log(hex.GetComponent<BasicHexEngine>().IsAlive());
-            Debug.Log(cloud.gameObject.name);
-            Cloud cloudObj = cloud.GetComponent<Cloud>();
-            GameObject obj = cloudObj.castRay();
-            if (obj != null)
-            {
-                BasicHexEngine hex = obj.GetComponent<BasicHexEngine>();
-                if (hex != null)
-                {
-                    cloudObj.attachedHex = hex;
-                    hex.attachedCloud = cloudObj;
-                }
-            }
+        //foreach (GameObject cloud in clouds)
+        //{
+        //    //Debug.Log(hex.GetComponent<BasicHexEngine>().IsAlive());
+        //    Debug.Log(cloud.gameObject.name);
+        //    Cloud cloudObj = cloud.GetComponent<Cloud>();
+        //    GameObject obj = cloudObj.castRay();
+        //    if (obj != null)
+        //    {
+        //        BasicHexEngine hex = obj.GetComponent<BasicHexEngine>();
+        //        if (hex != null)
+        //        {
+        //            cloudObj.attachedHex = hex;
+        //            hex.attachedCloud = cloudObj;
+        //        }
+        //    }
 
-        }
+        //}
     }
 
     public override void Execute()
@@ -41,12 +41,18 @@ public class CloudController : EnvController
             foreach (GameObject cloud in clouds)
             {
                 Cloud cloudObj = cloud.GetComponent<Cloud>();
-                //cloudObj.attachedHex.hexModel.SetState(HexState.Alive);
-                //cloudObj.attachedHex.hexModel.SetProgressState(ProgressState.Forest);
                 cloudObj.changeView();
-                if (cloudObj.getHumidity() > 50)
+                if (cloudObj.getHumidity() > 0)
+                {
                     cloudObj.move();
+                    if (cloudObj.getHumidity() > 2)
+                    {
+                       //cloudObj.rain();
 
+                    }
+
+                }
+                //cloudObj.rain();
             }
         }
 
