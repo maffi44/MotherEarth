@@ -34,6 +34,7 @@ public abstract class BasicHexEngine : MonoBehaviour
         //    this.gameObject.GetComponent()
         //}
         //else
+        TDeepChildFinder<Transform, string> finder = new TDeepChildFinder<Transform, string>();
         hexModel = new BasicHexModel(HexState.Dead);
         getNeibours();
         neiboursCount = hexNeibours.Count;
