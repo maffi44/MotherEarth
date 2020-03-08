@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="$USER_HOME$/Library/Caches/Rider2019.3/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/Rider2019.3/resharper-host/local/Transient/ReSharperHost/v193/SolutionCaches/_MotherEarth.2109656426.00" t="ExcludeRecursive" />
+    <e p="$PROJECT_DIR$" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Assets" t="Include">
+          <e p="Rune Assets" t="Include">
+            <e p="Simple" t="Include">
+              <e p="Urban Buildings Pack 1" t="Include">
+                <e p="runesimple.shader" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="VRWaterShader2" t="Include">
+            <e p="VRWaterShader(legacy)" t="Include">
+              <e p="Shaders" t="Include">
+                <e p="GLES30" t="Include">
+                  <e p="Standard.shader" t="Include" />
+                </e>
+              </e>
+            </e>
+          </e>
+        </e>
+        <e p="Editor" t="Include">
+          <e p="ChangeChildTags.cs" t="Include" />
+          <e p="RemoveComponentName.cs.cs" t="Include" />
+          <e p="RemoveComponentNameEditor.cs.cs" t="Include" />
+        </e>
+        <e p="Scripts" t="Include">
+          <e p="Controllers" t="Include">
+            <e p="BasicController.cs" t="Include" />
+            <e p="Cloud.cs" t="Include" />
+            <e p="CloudController.cs" t="Include" />
+            <e p="EnvController.cs" t="Include" />
+            <e p="Executor.cs" t="Include" />
+            <e p="HexController.cs" t="Include" />
+            <e p="IController.cs" t="Include" />
+            <e p="MeteorController.cs" t="Include" />
+            <e p="PlanetController.cs" t="Include" />
+            <e p="SunController.cs" t="Include" />
+            <e p="Utils" t="Include">
+              <e p="TransformDeepChildExtension.cs" t="Include" />
+            </e>
+            <e p="ViewController" t="Include">
+              <e p="HexViewController.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Hex" t="Include">
+            <e p="BasicHexEngine.cs" t="Include" />
+            <e p="BasicHexModel.cs" t="Include" />
+            <e p="IHexEngine.cs" t="Include" />
+            <e p="StandartHexEngine.cs" t="Include" />
+          </e>
+          <e p="Meteor" t="Include">
+            <e p="MeteorData.cs" t="Include" />
+            <e p="MeteorLife.cs" t="Include" />
+            <e p="SomeScript.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Store" t="Include">
+          <e p="ErbGameArt" t="Include">
+            <e p="Procedural fire" t="Include">
+              <e p="Shaders" t="Include">
+                <e p="FireSphere.shader" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="ExplosionEffects" t="Include">
+            <e p="Cartoon FX Easy Editor" t="Include">
+              <e p="Editor" t="Include">
+                <e p="CFXEasyEditor.cs" t="Include" />
+              </e>
+            </e>
+            <e p="WarFX" t="Include">
+              <e p="Editor" t="Include">
+                <e p="CFX_SpawnSystemEditor.cs" t="Include" />
+              </e>
+              <e p="Scripts" t="Include">
+                <e p="CFX_AutoDestructShuriken.cs" t="Include" />
+                <e p="CFX_LightIntensityFade.cs" t="Include" />
+                <e p="WFX_BulletHoleDecal.cs" t="Include" />
+                <e p="WFX_LightFlicker.cs" t="Include" />
+              </e>
+              <e p="Shaders" t="Include">
+                <e p="WFX_S Particle Add A8.shader" t="Include" />
+                <e p="WFX_S Smoke Scroll.shader" t="Include" />
+              </e>
+              <e p="Spawn System" t="Include">
+                <e p="CFX_SpawnSystem.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="MotherEarth.sln" t="IncludeFlat" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="Temp/bin" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>

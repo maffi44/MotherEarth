@@ -30,7 +30,6 @@ public class CloudController : EnvController
                     hex.attachedCloud = cloudObj;
                 }
             }
-
         }
     }
 
