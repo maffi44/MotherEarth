@@ -27,7 +27,7 @@ public class CloudController : EnvController
                 if (hex != null)
                 {
                     cloudObj.attachedHex = hex;
-                    hex.attachedCloud = cloudObj;
+                    //hex.attachedCloud = cloudObj;
                 }
             }
         }
